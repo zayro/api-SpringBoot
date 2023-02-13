@@ -12,8 +12,9 @@ public class LeerZip {
 
     List listaArchivos;
 
+
     private static final String ARCHIVO_ZIP = "/ruta/archivos.zip";
-    private static final String RUTA_SALIDA = "/ruta/";
+    private static final String RUTA_SALIDA = "/ruta/unzip";
 
     public static void main(String[] args) {
         LeerZip leerZip = new LeerZip();

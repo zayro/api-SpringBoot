@@ -21,7 +21,7 @@ public class HttpRequest {
 
        /*
         HttpResponse<String> response = Unirest.post("https://ocr-pipo.cognitiveservices.azure.com/vision/v3.2/read/analyze")
-                .header("Ocp-Apim-Subscription-Key", "a28e4823b78f49e0af28c54905b5aff6")
+                .header("Ocp-Apim-Subscription-Key", "")
                 .field("file", new File("/Users/mzarias/Pictures/prospectos.jpg"))
                 .asEmpty();
         */
@@ -29,7 +29,7 @@ public class HttpRequest {
             InputStream fileLoad = new FileInputStream("/ruta/prospectos.jpg");
 
             HttpResponse response = Unirest.post("https://ocr-pipo.cognitiveservices.azure.com/vision/v3.2/read/analyze")
-                    .header("Ocp-Apim-Subscription-Key", "a28e4823b78f49e0af28c54905b5aff6")
+                    .header("Ocp-Apim-Subscription-Key", "")
                     .header("Content-Type", "application/octet-stream")
                     .field("file", new File("/ruta/pcp_01.png"))
                     .uploadMonitor((field, fileName, bytesWritten, totalBytes) -> {
