@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/")
-public class UploadController {
+public class HelloController {
 
     @GetMapping(value = "/saludar")
     public String saludar() {
@@ -14,5 +14,12 @@ public class UploadController {
         return "Hola mundo";
 
     }
+
+
+
+
+
+
+
 
 }

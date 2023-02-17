@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+
+### VS Code ###
+/src/main/resources/files/unzip/**

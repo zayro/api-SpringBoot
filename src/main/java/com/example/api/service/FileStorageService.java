@@ -55,7 +55,6 @@ public class FileStorageService {
             System.out.println("#####################");
             System.out.println(fileName);
             System.out.println(targetLocation);
-            UnZip.unZipFile(targetLocation.toString(), "/ruta/uploads");
             System.out.println("#####################");
 
             return fileName;
