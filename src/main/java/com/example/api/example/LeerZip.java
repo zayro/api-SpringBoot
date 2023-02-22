@@ -21,7 +21,8 @@ public class LeerZip {
         LeerZip leerZip = new LeerZip();
         // leerZip.unZip(ARCHIVO_ZIP, RUTA_SALIDA);
         // leerZip.deleteListFiles();
-        leerZip.listFilesForFolder(RUTA_SALIDA);
+        // leerZip.listFilesForFolder(RUTA_SALIDA);
+        leerZip.stringZip("C19680292_0830099400041_1087.zip.gato.perro");
     }
 
     public void unZip(String archivoZip, String rutaSalida) {
@@ -100,5 +101,20 @@ public class LeerZip {
             }
         }
 
+    }
+
+    public void stringZip(String name) {
+
+        System.out.println(name);
+
+        String[] resultSplit = name.split("[.]");
+
+        System.out.println(resultSplit[0]);
+
+        String[] resultData = resultSplit[0].split("_");
+
+        for (String data : resultData){
+            System.out.println(data);
+        }
     }
 }
