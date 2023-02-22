@@ -34,7 +34,7 @@ public class PruebaRepository {
     public PruebaDto findById(String id) {
         try {
             System.out.println("--------------------------------------------");
-            System.out.println(" --w id:"+ id);
+            System.out.println(" -- id:"+ id);
             System.out.println("--------------------------------------------");
 
 
