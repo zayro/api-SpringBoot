@@ -46,6 +46,7 @@ dependencies {
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '1.5.2.RELEASE'
 	compile group: 'org.springframework.retry', name: 'spring-retry', version: '1.2.2.RELEASE'
 	compile 'org.projectreactor:reactor-spring:1.0.1.RELEASE'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
 
 	// Handler JSON

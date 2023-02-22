@@ -1,7 +1,6 @@
 package com.example.api.example;
 
 import com.example.api.util.ConstantUtil;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.util.LinkedMultiValueMap;

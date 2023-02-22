@@ -2,9 +2,7 @@ package com.example.api.example;
 
 import com.example.api.util.ConstantUtil;
 import kong.unirest.*;
-import org.springframework.beans.factory.annotation.Value;
-
-import java.io.File;
+ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
