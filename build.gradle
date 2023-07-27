@@ -6,7 +6,11 @@ plugins {
 
 group = 'com.rest'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+
+java {
+	sourceCompatibility = '17'
+}
+
 
 configurations {
 	compileOnly {
@@ -33,12 +37,35 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
 
-	/*
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	testImplementation 'org.springframework.security:spring-security-test'
-	 */
+
+
+	// Request Rest
+	implementation 'com.konghq:unirest-java:3.11.09'
+
+	// Library projectlombok
+	compileOnly 'org.projectlombok:lombok:1.18.26'
+	annotationProcessor 'org.projectlombok:lombok:1.18.26'
+	testCompileOnly 'org.projectlombok:lombok:1.18.26'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+	// DataBase
+	runtimeOnly 'org.postgresql:postgresql'
+
+	// docToPdf
+	implementation 'org.apache.poi:poi:5.1.0'
+	implementation 'org.apache.poi:poi-ooxml:5.1.0'
+	implementation 'com.itextpdf:kernel:7.1.17'
+	implementation 'com.itextpdf:io:7.1.17'
+	implementation 'com.itextpdf:layout:7.1.17'
+
+
 }
+
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+task makedirs(){
+	mkdir("${buildDir}/tmp/files")
 }
