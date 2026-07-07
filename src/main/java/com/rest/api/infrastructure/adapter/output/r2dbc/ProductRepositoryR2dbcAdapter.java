@@ -12,42 +12,30 @@ import java.util.Objects;
 public class ProductRepositoryR2dbcAdapter implements ProductRepository {
 
     private final ProductR2dbcRepository repo;
+    private final com.rest.api.infrastructure.mapper.ProductMapper mapper;
 
-    public ProductRepositoryR2dbcAdapter(ProductR2dbcRepository repo) {
+    public ProductRepositoryR2dbcAdapter(ProductR2dbcRepository repo, com.rest.api.infrastructure.mapper.ProductMapper mapper) {
         this.repo = repo;
+        this.mapper = mapper;
     }
 
-    private Product toDomain(ProductEntity e) {
-        if (e == null) return null;
-        return Product.builder()
-                .id(e.getId())
-                .name(e.getName())
-                .description(e.getDescription())
-                .price(e.getPrice())
-                .build();
-    }
-
-    private ProductEntity toEntity(Product p) {
-        if (p == null) return null;
-        return new ProductEntity(p.getId(), p.getName(), p.getDescription(), p.getPrice());
-    }
 
     @Override
     public Flux<Product> findAll() {
-        return repo.findAll().map(this::toDomain);
+        return repo.findAll().map(mapper::toDomain);
     }
 
     @Override
     public Mono<Product> findById(Long id) {
-        return repo.findById(id).map(this::toDomain);
+        return repo.findById(id).map(mapper::toDomain);
     }
 
     @Override
     public Mono<Product> save(Product product) {
-        ProductEntity entity = toEntity(product);
+        ProductEntity entity = mapper.toEntity(product);
         // ensure id null for create
         if (entity.getId() == null) entity.setId(null);
-        return repo.save(entity).map(this::toDomain);
+        return repo.save(entity).map(mapper::toDomain);
     }
 
     @Override
