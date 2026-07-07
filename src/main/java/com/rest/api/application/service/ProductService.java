@@ -28,7 +28,7 @@ public class ProductService {
 
     public Mono<Product> update(Long id, Product p) {
         return repository.findById(id)
-                .flatMap(existing -> repository.save(new Product(id, p.getName(), p.getDescription(), p.getPrice())));
+                .flatMap(existing -> repository.save(p.withId(id)));
     }
 
     public Mono<Void> delete(Long id) {

@@ -17,8 +17,8 @@ public class InMemoryProductRepository implements ProductRepository {
     private final AtomicLong seq = new AtomicLong(100);
 
     public InMemoryProductRepository() {
-        var p1 = new Product(1L, "Lapicero", "Lapicero azul", new BigDecimal("1.50"));
-        var p2 = new Product(2L, "Cuaderno", "Cuaderno A4", new BigDecimal("3.20"));
+        var p1 = Product.builder().id(1L).name("Lapicero").description("Lapicero azul").price(new BigDecimal("1.50")).build();
+        var p2 = Product.builder().id(2L).name("Cuaderno").description("Cuaderno A4").price(new BigDecimal("3.20")).build();
         map.put(p1.getId(), p1);
         map.put(p2.getId(), p2);
         seq.set(2);

@@ -22,6 +22,12 @@ ext {
 }
 
 dependencies {
+	// Reactive web support
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+	// Validation (Jakarta Validation)
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
 	implementation 'org.springframework.ai:spring-ai-markdown-document-reader'
@@ -31,6 +37,12 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-data-jdbc-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-data-r2dbc-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// Lombok for reducing boilerplate
+	compileOnly 'org.projectlombok:lombok:1.18.26'
+	annotationProcessor 'org.projectlombok:lombok:1.18.26'
+	testCompileOnly 'org.projectlombok:lombok:1.18.26'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
 }
 
 dependencyManagement {

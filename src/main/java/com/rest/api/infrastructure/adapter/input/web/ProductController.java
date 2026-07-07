@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.math.BigDecimal;
 
 @RestController
@@ -58,7 +58,12 @@ public class ProductController {
 
     public record ProductRequest(String name, String description, BigDecimal price) {
         public Product toDomain() {
-            return new Product(null, name, description, price);
+            return Product.builder()
+                    .id(null)
+                    .name(name)
+                    .description(description)
+                    .price(price)
+                    .build();
         }
     }
 

@@ -19,7 +19,12 @@ public class ProductRepositoryR2dbcAdapter implements ProductRepository {
 
     private Product toDomain(ProductEntity e) {
         if (e == null) return null;
-        return new Product(e.getId(), e.getName(), e.getDescription(), e.getPrice());
+        return Product.builder()
+                .id(e.getId())
+                .name(e.getName())
+                .description(e.getDescription())
+                .price(e.getPrice())
+                .build();
     }
 
     private ProductEntity toEntity(Product p) {

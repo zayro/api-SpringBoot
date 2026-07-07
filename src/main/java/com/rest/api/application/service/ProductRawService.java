@@ -55,7 +55,7 @@ public class ProductRawService {
                 .one();
     }
 
-    public Mono<Integer> updateRaw(Long id, String name, String description, BigDecimal price) {
+    public Mono<Long> updateRaw(Long id, String name, String description, BigDecimal price) {
         String sql = "UPDATE products SET name = :name, description = :description, price = :price WHERE id = :id";
         return db.sql(sql)
                 .bind("name", name)
@@ -66,7 +66,7 @@ public class ProductRawService {
                 .rowsUpdated();
     }
 
-    public Mono<Integer> deleteRaw(Long id) {
+    public Mono<Long> deleteRaw(Long id) {
         String sql = "DELETE FROM products WHERE id = :id";
         return db.sql(sql)
                 .bind("id", id)
