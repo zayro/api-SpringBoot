@@ -2,6 +2,11 @@ package com.rest.api.infrastructure.adapter.input.web;
 
 import com.rest.api.application.service.ProductService;
 import com.rest.api.domain.model.Product;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -9,11 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import jakarta.validation.Valid;
 import java.math.BigDecimal;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping({"/api/products","/api/v1/products"})
 public class ProductController {
     private final ProductService service;
 
@@ -56,7 +60,11 @@ public class ProductController {
                 .then(Mono.just(ResponseEntity.noContent().<Void>build()));
     }
 
-    public record ProductRequest(String name, String description, BigDecimal price) {
+    public record ProductRequest(
+            @NotBlank String name,
+            @NotBlank String description,
+            @NotNull @PositiveOrZero @DecimalMax(value = "1000000", inclusive = true) BigDecimal price
+    ) {
         public Product toDomain() {
             return Product.builder()
                     .id(null)

@@ -4,6 +4,10 @@ import com.rest.api.application.service.ProductRawService;
 import com.rest.api.domain.model.Product;
 import com.rest.api.infrastructure.adapter.input.web.ProductController.ProductResponse;
 import com.rest.api.infrastructure.mapper.ProductMapper;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +17,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping({"/api/products","/api/v1/products"})
 public class ProductRawController {
     private final ProductRawService rawService;
     private final ProductMapper mapper;
@@ -62,7 +66,11 @@ public class ProductRawController {
                 .map(rows -> new ProductRawResponse(sql, new RowsResult("rowsDeleted", rows)));
     }
 
-    public record ProductRequest(String name, String description, BigDecimal price) {}
+    public record ProductRequest(
+            @NotBlank String name,
+            @NotBlank String description,
+            @NotNull @PositiveOrZero @DecimalMax(value = "1000000", inclusive = true) BigDecimal price
+    ) {}
 
     public record CreateResult(Long id) {}
 

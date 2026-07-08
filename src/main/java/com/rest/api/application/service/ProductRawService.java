@@ -1,6 +1,7 @@
 package com.rest.api.application.service;
 
 import com.rest.api.domain.model.Product;
+import com.rest.api.application.validation.ProductPriceValidator;
 import com.rest.api.infrastructure.mapper.ProductMapper;
 import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,12 @@ public class ProductRawService {
 
     private final DatabaseClient db;
     private final ProductMapper mapper;
+    private final ProductPriceValidator validator;
 
-    public ProductRawService(DatabaseClient db, ProductMapper mapper) {
+    public ProductRawService(DatabaseClient db, ProductMapper mapper, ProductPriceValidator validator) {
         this.db = db;
         this.mapper = mapper;
+        this.validator = validator;
     }
 
     public Flux<Product> findAllRaw() {
@@ -38,6 +41,7 @@ public class ProductRawService {
     }
 
     public Mono<Long> insertRaw(String name, String description, BigDecimal price) {
+        validator.validate(price);
         String sql = "INSERT INTO products (name, description, price) VALUES (:name, :description, :price) RETURNING id";
         return db.sql(sql)
                 .bind("name", name)
@@ -48,6 +52,7 @@ public class ProductRawService {
     }
 
     public Mono<Long> updateRaw(Long id, String name, String description, BigDecimal price) {
+        validator.validate(price);
         String sql = "UPDATE products SET name = :name, description = :description, price = :price WHERE id = :id";
         return db.sql(sql)
                 .bind("name", name)
