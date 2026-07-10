@@ -13,13 +13,16 @@
 ![Captura2.png](src%2Fmain%2Fresources%2Fdoc%2FCaptura2.png)
 
 
-https://start.spring.io/
+
 
 # comandos  Gradlew
 
 - .\gradlew compileJava
 - .\gradlew.bat bootRun
-
+- .\gradlew.bat bootRun --args='--spring.profiles.active=dev'
+- .\gradlew.bat clean build
+- .\gradlew.bat test --tests
+- [example]('.\gradlew.bat test --tests ProductControllerTest')
 
 
 # comandos versiones

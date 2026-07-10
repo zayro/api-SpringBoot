@@ -2,6 +2,7 @@ package com.rest.api.infrastructure.adapter.output.inmemory;
 
 import com.rest.api.domain.model.Product;
 import com.rest.api.domain.port.ProductRepository;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -12,6 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
+@Profile({"dev", "test", "inmemory"})
 public class InMemoryProductRepository implements ProductRepository {
     private final Map<Long, Product> map = new ConcurrentHashMap<>();
     private final AtomicLong seq = new AtomicLong(100);
